@@ -4,6 +4,7 @@ import helmet from "helmet";
 import "dotenv/config";
 import {ResponseBodyWithoutData} from './entities/response';
 import authRouter from './routers/auth.router';
+import orderRouter from './routers/order.router';
 
 const app: Express = express();
 const port = 3000;
@@ -24,6 +25,8 @@ app.get("/api/v1", (req: Request, res: Response) => {
 
 // Route handlers
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/auth", orderRouter);
+
 
 
 
