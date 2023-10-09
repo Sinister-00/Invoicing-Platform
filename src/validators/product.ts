@@ -19,6 +19,7 @@ export const getProduct = yup.object({
     .required("Please provide a number")
     .matches(/^[0-9]+$/g, "Please prove a number"),
 });
+export type TGetProductSchema = yup.InferType<typeof getProduct>;
 
 export const modifyProduct = yup
   .object({
@@ -33,4 +34,4 @@ export const modifyProduct = yup
   .noUnknown(true)
   .strict();
 
-export type TModifyProductSchema = yup.InferType<typeof getProduct>;
+export type TModifyProductSchema = yup.InferType<typeof modifyProduct>;

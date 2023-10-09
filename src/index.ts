@@ -6,6 +6,7 @@ import {ResponseBodyWithoutData} from './entities/response';
 import authRouter from './routers/auth.router';
 import orderRouter from './routers/order.router';
 import cartRouter from './routers/cart.router';
+import productRouter from './routers/product.router';
 
 const app: Express = express();
 const port = 3000;
@@ -28,6 +29,8 @@ app.get("/api/v1", (req: Request, res: Response) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/auth", orderRouter);
 app.use("/api/v1/cart", cartRouter);
+app.use("/api/v1/product", productRouter);
+
 
 
 
