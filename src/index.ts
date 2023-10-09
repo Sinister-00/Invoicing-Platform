@@ -7,15 +7,18 @@ import authRouter from './routers/auth.router';
 import orderRouter from './routers/order.router';
 import cartRouter from './routers/cart.router';
 import productRouter from './routers/product.router';
+import {connectDB} from './utils/db';
 
 const app: Express = express();
-const port = 3000;
+const port = 3001;
 
 app.use(helmet());
 
 app.use(cors());
 
 app.use(express.json());
+
+connectDB()
 
 // Health Check
 app.get("/api/v1", (req: Request, res: Response) => {
@@ -30,9 +33,6 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/auth", orderRouter);
 app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/product", productRouter);
-
-
-
 
 // --------------
 app.get('/', (req: Request, res: Response) => {

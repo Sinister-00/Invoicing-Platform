@@ -1,7 +1,7 @@
-import {AppDataSource} from "../db";
+import {dbSource} from "../db";
 
 export const connectDB = async () => {
-  await AppDataSource.initialize()
+  await dbSource.initialize()
     .then(async () => {
       // here you can start to work with your database
       console.log("✅ Databse Connection established");
@@ -12,7 +12,7 @@ export const connectDB = async () => {
 };
 
 export const closeDB = async () => {
-  await AppDataSource.destroy()
+  await dbSource.destroy()
     .then(async () => {
       // here you can start to work with your database
       console.log("💾 Databse Connection disconnected");
