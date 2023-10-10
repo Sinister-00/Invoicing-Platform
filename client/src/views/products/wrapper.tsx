@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 const Wrapper = styled.section`
   .grid-filter-column {
     grid-template-columns: 0.2fr 1fr;

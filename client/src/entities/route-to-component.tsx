@@ -1,3 +1,5 @@
+import { createBrowserRouter } from 'react-router-dom';
+
 import AboutPage from '../views/about';
 import BillPage from '../views/bill';
 import CartPage from '../views/cart';
@@ -24,3 +26,10 @@ export const routeList: Record<string, React.ReactNode> = {
   [ROUTES.CONTACT]: <ContactPage />,
   [ROUTES.PRODUCT]: <ProductPage />,
 };
+
+const baseRouterArray = Object.keys(routeList).map((route) => ({
+  path: route,
+  element: routeList[route],
+}));
+
+export const baseRouter = createBrowserRouter(baseRouterArray);

@@ -1,9 +1,10 @@
 import axios from 'axios';
-import Wrapper from './wrapper';
 import Button from 'components/button';
 import formatPrice from 'helpers/format-price';
 import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
+
+import Wrapper from './wrapper';
 
 const BillPage = () => {
   const { cart, total_price, tax_fee, total_item } = useCartStore();
@@ -17,15 +18,15 @@ const BillPage = () => {
       orderTotal: total_price + tax_fee,
     };
 
-    try {
-      const response = await axios.post(
-        'https://plotline-project.onrender.com/orders',
-        orderData,
-      );
-      console.log('Order placed:', response.data);
-    } catch (error) {
-      console.error('Error placing order:', error);
-    }
+    // try {
+    //   const response = await axios.post(
+    //     'https://plotline-project.onrender.com/orders',
+    //     orderData,
+    //   );
+    //   console.log('Order placed:', response.data);
+    // } catch (error) {
+    //   console.error('Error placing order:', error);
+    // }
   };
 
   return (

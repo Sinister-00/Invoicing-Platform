@@ -1,7 +1,8 @@
+import formatPrice from 'helpers/format-price';
 import React from 'react';
 import { FaTrash } from 'react-icons/fa';
 import useCartStore from 'store/useCartStore';
-import formatPrice from 'helpers/format-price';
+
 import Toggle from './toggle';
 
 const CartItem = ({ id, name, image, color, price, amount }) => {

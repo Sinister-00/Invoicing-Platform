@@ -10,17 +10,17 @@ const API = 'https://localhost:4000/orders';
 const OrderHistoryPage = () => {
   const [orders, setOrders] = useState<any[]>();
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get(API);
-        setOrders(response.data);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
-    };
-    fetchOrders();
-  }, []);
+  // useEffect(() => {
+  //   const fetchOrders = async () => {
+  //     try {
+  //       const response = await axios.get(API);
+  //       setOrders(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching orders:', error);
+  //     }
+  //   };
+  //   fetchOrders();
+  // }, []);
 
   return (
     <Wrapper>

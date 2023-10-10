@@ -1,8 +1,8 @@
+import Button from 'components/button';
+import formatPrice from 'helpers/format-price';
 import { FaCheck } from 'react-icons/fa';
+import useFilterStore from 'store/useFilter';
 
-import { useFilterContext } from '../context/filter_context';
-import FormatPrice from '../Helpers/FormatPrice';
-import { Button } from '../styles/Button';
 import Wrapper from './wrapper';
 
 const FilterSection = () => {
@@ -11,7 +11,7 @@ const FilterSection = () => {
     updateFilterValue,
     all_products,
     clearFilters,
-  } = useFilterContext();
+  } = useFilterStore();
 
   const getUniqueData = (data, attr) => {
     let newVal = data.map((curElem) => {
@@ -122,9 +122,7 @@ const FilterSection = () => {
 
       <div className="filter_price">
         <h3>Price</h3>
-        <p>
-          <FormatPrice price={price} />
-        </p>
+        <p> {formatPrice(price)} </p>
         <input
           type="range"
           name="price"

@@ -2,6 +2,7 @@ import Button from 'components/button';
 import { ROUTES } from 'entities/routes';
 import { NavLink } from 'react-router-dom';
 
+import image from '../../../resources/images/hero.jpg';
 import Wrapper from './wrapper';
 
 const HeroSection = () => {
@@ -28,7 +29,7 @@ const HeroSection = () => {
           {/* our homepage image  */}
           <div className="hero-section-image">
             <figure>
-              <img src="images/hero.jpg" alt="hero-section" className="img-style" />
+              <img src={image} alt="hero-section" className="img-style" />
             </figure>
           </div>
         </div>

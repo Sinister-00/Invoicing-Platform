@@ -1,4 +1,4 @@
-import { THEME } from 'entities/theme';
+// import { THEME } from 'entities/theme';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`

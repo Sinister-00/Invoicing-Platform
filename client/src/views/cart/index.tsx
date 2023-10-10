@@ -1,10 +1,11 @@
 import Button from 'components/button';
+import CartItem from 'components/cart-item';
 import formatPrice from 'helpers/format-price';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
+
 import Wrapper from './wrapper';
-import CartItem from 'components/cart-item';
 
 const CartPage = () => {
   const { cart, clearCart, total_price, tax_fee } = useCartStore();

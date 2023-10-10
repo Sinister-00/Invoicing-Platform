@@ -18,22 +18,22 @@ const SignInPage = () => {
       password,
     };
 
-    try {
-      const response = await axios.post(API_URL, userData);
+    // try {
+    //   const response = await axios.post(API_URL, userData);
 
-      if (response.status === 200) {
-        console.log('User registered successfully');
-        const userEmail = response.data.getemail;
-        localStorage.setItem('userEmail', JSON.stringify(userEmail));
-        console.log(userEmail);
-        window.location.href = '/';
-      } else {
-        console.error('Failed to register user');
-      }
-    } catch (error) {
-      setErrorMessage('User already exit / type valid email address');
-      console.error('An error occurred', error);
-    }
+    //   if (response.status === 200) {
+    //     console.log('User registered successfully');
+    //     const userEmail = response.data.getemail;
+    //     localStorage.setItem('userEmail', JSON.stringify(userEmail));
+    //     console.log(userEmail);
+    //     window.location.href = '/';
+    //   } else {
+    //     console.error('Failed to register user');
+    //   }
+    // } catch (error) {
+    //   setErrorMessage('User already exit / type valid email address');
+    //   console.error('An error occurred', error);
+    // }
   };
 
   return (

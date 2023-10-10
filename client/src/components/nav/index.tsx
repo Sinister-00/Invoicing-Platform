@@ -16,21 +16,22 @@ const Nav = () => {
   const [userEmail, setUserEmail] = useState('');
   const [menuIcon, setMenuIcon] = useState(true);
   const { total_item } = useCartStore();
-  const email = JSON.parse(localStorage.getItem('userEmail') || '');
+  const email = JSON.parse(localStorage.getItem('userEmail') || '{}');
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem('token') || ' ';
-        const headers = { Authorization: `Bearer ${token}` };
-        const res = await axios.get(API, { headers });
-        setUserEmail(res.data.email);
-      } catch (e) {
-        console.error('Failed to fetch user data:', e);
-      }
-    };
-    fetchUserData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const token = localStorage.getItem('token') || ' ';
+  //       const headers = { Authorization: `Bearer ${token}` };
+  //       const res = await axios.get(API, { headers });
+  //       setUserEmail(res.data.email);
+  //     } catch (e) {
+  //       console.error('Failed to fetch user data:', e);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, []);
+
   const redirectToHome = () => {
     window.location.href = '/login';
   };
