@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import Wrapper from './wrapper';
-import { Button } from 'style-components';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'style-components';
+
+import Wrapper from './wrapper';
 
 const API_URL = 'https://localhost:4000/auth';
 
@@ -13,7 +14,6 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async () => {
-
     try {
       const response = await axios.post(`${API_URL}/login`, { email, password });
       if (response.status === 200) {
@@ -53,7 +53,9 @@ const LoginPage = () => {
           />
           <Button onClick={handleLogin}>Login</Button>
           {errorMessage && <p style={{ color: 'red' }}>({errorMessage})</p>}
-          <p>New User? <a href='/signin'>SignIn</a></p>
+          <p>
+            New User? <a href="/signin">SignIn</a>
+          </p>
         </div>
       </div>
     </Wrapper>

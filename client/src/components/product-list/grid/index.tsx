@@ -1,6 +1,4 @@
 import Product from 'components/home-product';
-import React from 'react';
-import styled from 'styled-components';
 
 import Wrapper from './wrapper';
 

@@ -8,9 +8,9 @@ const useCartStore = create<CartState>((set) => ({
   total_price: '',
   tax_fee: '',
   tax: '',
-  addToCart: (id, color, amount, product) => {
+  addToCart: (id, name, color, amount, product) => {
     set((state) => ({
-      cart: [...state.cart, { id, color, amount, product }],
+      cart: [...state.cart, { id, name, color, amount, product }],
     }));
   },
   setDecrease: (id) => {

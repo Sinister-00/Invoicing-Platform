@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import Wrapper from './wrapper';
 import axios from 'axios';
 import Button from 'components/button';
+import React, { useState } from 'react';
 
-const API_URL = "https://localhost:4000/auth/register";
+import Wrapper from './wrapper';
+
+const API_URL = 'https://localhost:4000/auth/register';
 
 const SignInPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   // const [redirectToHome, setRedirectToHome] = useState(false);
 
   const handleSignIn = async () => {
@@ -21,17 +22,17 @@ const SignInPage = () => {
       const response = await axios.post(API_URL, userData);
 
       if (response.status === 200) {
-        console.log("User registered successfully");
+        console.log('User registered successfully');
         const userEmail = response.data.getemail;
-        localStorage.setItem("userEmail", JSON.stringify(userEmail));
+        localStorage.setItem('userEmail', JSON.stringify(userEmail));
         console.log(userEmail);
-        window.location.href = "/";
+        window.location.href = '/';
       } else {
-        console.error("Failed to register user");
+        console.error('Failed to register user');
       }
     } catch (error) {
-      setErrorMessage("User already exit / type valid email address");
-      console.error("An error occurred", error);
+      setErrorMessage('User already exit / type valid email address');
+      console.error('An error occurred', error);
     }
   };
 
@@ -43,8 +44,8 @@ const SignInPage = () => {
           <input
             type="name"
             placeholder="Username"
-          // value={name}
-          // onChange={(e) => setEmail(e.target.value)}
+            // value={name}
+            // onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="email"
@@ -59,7 +60,7 @@ const SignInPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleSignIn}>Sign In</Button>
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
           <p>
             Already have an account ?<a href="/login"> click here</a>
@@ -69,6 +70,5 @@ const SignInPage = () => {
     </Wrapper>
   );
 };
-
 
 export default SignInPage;

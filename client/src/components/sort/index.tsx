@@ -1,6 +1,7 @@
 import { BsFillGridFill, BsList } from 'react-icons/bs';
-import Wrapper from './wrapper';
 import useFilterStore from 'store/useFilter';
+
+import Wrapper from './wrapper';
 
 const Sort = () => {
   const { filter_products, grid_view, setGridView, setListView, sorting } =
