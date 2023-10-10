@@ -1,6 +1,7 @@
-import useProductStore from 'store/useProductStore';
-import Wrapper from './wrapper';
 import Product from 'components/home-product';
+import useProductStore from 'store/useProductStore';
+
+import Wrapper from './wrapper';
 
 const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductStore();

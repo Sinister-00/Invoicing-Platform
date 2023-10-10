@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { CartState } from '../entities/cart';
 
 const useCartStore = create<CartState>((set) => ({

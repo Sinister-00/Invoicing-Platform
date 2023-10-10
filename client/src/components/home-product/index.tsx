@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import formatPrice from 'helpers/format-price';
+import { NavLink } from 'react-router-dom';
 
 const Product: React.FC<any> = (props) => {
   const { id, name, image, price, category } = props;

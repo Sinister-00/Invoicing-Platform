@@ -1,7 +1,8 @@
-import { TbTruckDelivery } from 'react-icons/tb';
-import { MdSecurity } from 'react-icons/md';
 import { GiReceiveMoney } from 'react-icons/gi';
+import { MdSecurity } from 'react-icons/md';
 import { RiSecurePaymentLine } from 'react-icons/ri';
+import { TbTruckDelivery } from 'react-icons/tb';
+
 import Wrapper from './wrapper';
 
 const Services = () => {

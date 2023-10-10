@@ -1,7 +1,8 @@
-import Wrapper from './wrapper';
 import Button from 'components/button';
-import { NavLink } from 'react-router-dom';
 import { ROUTES } from 'entities/routes';
+import { NavLink } from 'react-router-dom';
+
+import Wrapper from './wrapper';
 
 const HeroSection = () => {
   return (

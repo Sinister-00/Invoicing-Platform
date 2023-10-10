@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { create } from 'zustand';
 import { Product, ProductState } from 'entities/product';
+import { create } from 'zustand';
 
 const useProductStore = create<ProductState>((set) => ({
   isLoading: false,
