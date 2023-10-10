@@ -1,11 +1,10 @@
 import { BsFillGridFill, BsList } from 'react-icons/bs';
-
-import { useFilterContext } from '../context/filter_context';
 import Wrapper from './wrapper';
+import useFilterStore from 'store/useFilter';
 
 const Sort = () => {
   const { filter_products, grid_view, setGridView, setListView, sorting } =
-    useFilterContext();
+    useFilterStore();
   return (
     <Wrapper className="sort-section">
       {/* 1st column  */}
