@@ -11,7 +11,9 @@ const getOrderItems = async (
   const orderItems = await dbSource.getRepository(Order).find({
     where: {
       id: Equal(id),
-      user: Equal(user),
+      user: {
+        id: Equal(user.id)
+      },
     },
     relations: {
       orderItems: true,

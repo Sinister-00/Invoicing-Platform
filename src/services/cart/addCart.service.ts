@@ -9,23 +9,23 @@ const addCart = async (
   data: TAddCartSchema,
   userModel: User
 ): Promise<APIResponse<Object>> => {
-  if (!data.product_id && !data.service_id) {
+  if (!data.product_id) {
     return {
       statusCode: 404,
       body: {
         success: false,
-        message: "🔗 Please provide a product or service ID ",
+        message: "🔗 Please provide a product ID",
       },
     };
   }
 
-  if (data.product_id && data.service_id) {
+  if (data.product_id) {
     return {
       statusCode: 400,
       body: {
         success: false,
         message:
-          "🔗 Please provide only one item. Either product or service ID",
+          "🔗 Please provide only one item. Either product ID",
       },
     };
   }

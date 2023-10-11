@@ -16,7 +16,9 @@ const placeOrder = async (user: User): Promise<APIResponse<Object>> => {
       product: true,
     },
     where: {
-      user: Equal(user),
+      user: {
+        id: Equal(user.id)
+      },
     },
     order: {
       id: "ASC",

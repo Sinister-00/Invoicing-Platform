@@ -2,12 +2,15 @@ import { dbSource } from "../../db";
 import User from "../../entities/db/user";
 import CartItem from "../../entities/db/cart-items";
 import { APIResponseWithoutData } from "../../entities/response";
+import { Equal } from "typeorm";
 
 const deleteCartItems = async (
   user: User
 ): Promise<APIResponseWithoutData> => {
   await dbSource.getRepository(CartItem).delete({
-    user: user,
+    user: {
+      id: Equal(user.id)
+    },
   });
 
   return {
@@ -24,7 +27,9 @@ const deleteSpecificCartItems = async (
   id: number
 ): Promise<APIResponseWithoutData> => {
   await dbSource.getRepository(CartItem).delete({
-    user: user,
+    user: {
+      id: Equal(user.id)
+    },
     id: id,
   });
 

@@ -8,8 +8,11 @@ const deleteCartItems = async (
   user: User
 ): Promise<APIResponse<undefined>> => {
   await dbSource.getRepository(CartItem).delete({
-    user: Equal(user),
+    user: {
+      id: Equal(user.id)
+    },
   });
+
 
   return {
     statusCode: 200,
@@ -25,7 +28,9 @@ const deleteSpecificCartItems = async (
   id: number
 ): Promise<APIResponse<undefined>> => {
   await dbSource.getRepository(CartItem).delete({
-    user: Equal(user),
+    user: {
+      id: Equal(user.id)
+    },
     id: Equal(id),
   });
 

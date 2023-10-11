@@ -7,7 +7,9 @@ import { APIResponse } from "../../entities/response";
 const getOrders = async (user: User): Promise<APIResponse<Order[]>> => {
   const orders = await dbSource.getRepository(Order).find({
     where: {
-      user: Equal(user),
+      user: {
+        id: Equal(user.id)
+      },
     },
     order: {
       id: "ASC",
