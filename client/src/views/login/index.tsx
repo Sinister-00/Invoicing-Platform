@@ -27,7 +27,7 @@ const LoginPage = () => {
         setUserData(res.data);
         localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(res.data));
         // DO NOT STRINGIFY, also dont change now.
-        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(res.data.token));
+        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, res.data.token);
         navigate(ROUTES.HOME, {
           replace: true,
         });

@@ -6,7 +6,7 @@ const Wrapper = styled.section`
     margin-bottom: 5px;
     font-weight: 900;
   }
-  h3{
+  h3 {
     margin: 20px 0;
     font-size: 20px;
     font-weight: 700;

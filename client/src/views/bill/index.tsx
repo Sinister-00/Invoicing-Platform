@@ -2,12 +2,14 @@ import axios from 'axios';
 import Button from 'components/button';
 import Header from 'components/header';
 import formatPrice from 'helpers/format-price';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
 
-import Wrapper from './wrapper';
-import { useEffect, useState } from 'react';
 import getCart, { Cart, emptyCart } from '../../api/getCart';
+import placeOrder from '../../api/postOrder';
+import Wrapper from './wrapper';
+import { ROUTES } from 'entities/routes';
 
 const BillPage = () => {
   const [loading, setLoading] = useState(false);
@@ -18,7 +20,7 @@ const BillPage = () => {
       setLoading(true);
       const data = await getCart();
       console.log(data);
-      setCartData(data)
+      setCartData(data);
       setLoading(false);
     };
 
@@ -36,15 +38,12 @@ const BillPage = () => {
 
     console.log(orderData);
 
-    // try {
-    //   const response = await axios.post(
-    //     'https://plotline-project.onrender.com/orders',
-    //     orderData,
-    //   );
-    //   console.log('Order placed:', response.data);
-    // } catch (error) {
-    //   console.error('Error placing order:', error);
-    // }
+    try {
+      const response = await placeOrder();
+      console.log('Order placed:', response);
+    } catch (error) {
+      console.error('Error placing order:', error);
+    }
   };
 
   if (loading) {
@@ -92,7 +91,7 @@ const BillPage = () => {
             </div>
             <p>Cash on Delivery</p>
           </div>
-          <NavLink to="/orderplaced">
+          <NavLink to={ROUTES.ORDER_PLACED}>
             <Button onClick={handleConfirmOrder} className="btn">
               Confirm Order
             </Button>

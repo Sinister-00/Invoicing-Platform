@@ -23,7 +23,7 @@ export type ResponseUserData = {
   isAdmin: boolean;
   isVerified: boolean;
   name: string;
-  token: string
+  token: string;
   username: string;
 };
 

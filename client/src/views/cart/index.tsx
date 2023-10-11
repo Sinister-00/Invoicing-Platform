@@ -22,7 +22,7 @@ const CartPage = () => {
       setLoading(true);
       const data = await getCart();
       console.log(data);
-      setCartData(data)
+      setCartData(data);
       setLoading(false);
     };
 
@@ -60,6 +60,8 @@ const CartPage = () => {
               console.log(curElem);
               return (
                 <CartItem
+                  tax={curElem.tax}
+                  totalAmount={curElem.taxItemPrice}
                   id={curElem.id.toString()}
                   color={curElem.product.colors[1]}
                   amount={curElem.quantity}

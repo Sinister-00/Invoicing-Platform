@@ -9,13 +9,15 @@ import Toggle from './toggle';
 type CartItemProps = CartItem & {
   image: string;
   price: number;
+  tax: number;
+  totalAmount: number;
 };
 
-const CartItem: React.FC<CartItemProps> = ({ id, name, image, price, amount }) => {
-  const { removeItem, setDecrease, setIncrement, tax } = useCartStore();
+const CartItem: React.FC<CartItemProps> = ({ id, totalAmount, tax, name, image, price, amount, product }) => {
+  const { removeItem, setDecrease, setIncrement } = useCartStore();
   const handleClick = async () => {
-    await removeFromCart(id)
-    removeItem(id)
+    await removeFromCart(id);
+    removeItem(id);
   };
 
   return (
@@ -39,11 +41,11 @@ const CartItem: React.FC<CartItemProps> = ({ id, name, image, price, amount }) =
       />
 
       <div className="cart-hide">
-        <p>{formatPrice(price * amount * parseInt(tax))} </p>
+        <p>{formatPrice(tax / 100)} </p>
       </div>
 
       <div className="cart-hide">
-        <p> {formatPrice(price * amount) + price * amount * parseInt(tax)} </p>
+        <p> {formatPrice((totalAmount * amount) + (tax / 100))} </p>
       </div>
 
       <button onClick={handleClick}>

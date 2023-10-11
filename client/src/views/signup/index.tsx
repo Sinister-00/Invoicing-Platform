@@ -1,5 +1,6 @@
 import Button from 'components/button';
 import Header from 'components/header';
+import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 import { ROUTES } from 'entities/routes';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +8,6 @@ import useUserStore from 'store/useUser';
 
 import handleSignUp from '../../api/handleSignup';
 import Wrapper from './wrapper';
-import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
