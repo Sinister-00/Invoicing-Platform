@@ -1,6 +1,6 @@
-import {dbSource} from "../../db";
+import { dbSource } from "../../db";
 import Product from "../../entities/db/product";
-import {APIResponseWithoutData} from "../../entities/response";
+import { APIResponseWithoutData } from "../../entities/response";
 
 const deleteProduct = async (
   id: number
@@ -22,8 +22,8 @@ const deleteProduct = async (
   productRepository.remove(product);
   return {
     statusCode: 200,
-    body: {success: true, message: "🛒 Deleted the product successfully"},
+    body: { success: true, message: "🛒 Deleted the product successfully" },
   };
 };
 
-export {deleteProduct};
+export { deleteProduct };

@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 import * as ProductService from "../../services/product";
 
 const addProduct = async (req: Request, res: Response) => {

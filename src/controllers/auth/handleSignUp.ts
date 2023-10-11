@@ -1,35 +1,17 @@
-import * as bcrypt from "bcrypt";
-import {dbSource} from "../../db";
-import User from "../../entities/db/user";
-import {TSignupSchema} from "../../validators/auth";
-import {APIResponse} from "../../entities/response";
+import authService from "../../services/auth";
+import { Request, Response } from "express";
 
-const handleSignUp = async (
-  data: TSignupSchema
-): Promise<APIResponse<User>> => {
-  const userRepository = dbSource.getRepository(User);
-  const user = await userRepository.findOne({
-    where: [{email: data.email}, {username: data.username}],
-  });
-  if (user) {
-    return {
-      statusCode: 403,
-      body: {success: false, message: "🤵 User Already Exists"},
-    };
+const handleSignUp = async (req: Request, res: Response) => {
+  try {
+    const data = await authService.signUp(req.body);
+    let resBody: any = data.body;
+    delete resBody.data?.password;
+    res.status(data.statusCode).send(resBody);
+  } catch (e: any) {
+    console.error(e.message);
+    res.status(500).send(e.message);
   }
-
-  const saltRounds = 10;
-  const hash = await bcrypt.hash(data.password, saltRounds);
-  data.password = hash;
-  const createdUser = await userRepository.save(data);
-  return {
-    statusCode: 201,
-    body: {
-      success: true,
-      message: "🙎 User Registered Successfully",
-      data: createdUser,
-    },
-  };
 };
+
 
 export default handleSignUp

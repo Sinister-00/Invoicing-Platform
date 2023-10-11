@@ -1,12 +1,12 @@
-import {NextFunction, Request, Response} from "express";
-import {ObjectSchema} from "yup";
+import { NextFunction, Request, Response } from "express";
+import { ObjectSchema } from "yup";
 import errorToList from "../utils/error-to-list";
-import {APIResponseWithoutData} from "../entities/response";
+import { APIResponseWithoutData } from "../entities/response";
 
 const validateQuery = (schema: ObjectSchema<any>) =>
   async (req: Request, _: Response, next: NextFunction) => {
     try {
-      await schema.validate(req.query, {abortEarly: false});
+      await schema.validate(req.query, { abortEarly: false });
       next()
     }
     catch (e: any) {
@@ -24,11 +24,11 @@ const validateQuery = (schema: ObjectSchema<any>) =>
 const validateBody = (schema: ObjectSchema<any>) =>
   async (req: Request, _: Response, next: NextFunction) => {
     try {
-      await schema.validate(req.body, {abortEarly: false});
+      await schema.validate(req.body, { abortEarly: false });
       next()
     }
     catch (e: any) {
-      const errorList = errorToList(e)
+      const errorList = errorToList(e.errors)
       next({
         statusCode: 404,
         body: {
@@ -42,7 +42,7 @@ const validateBody = (schema: ObjectSchema<any>) =>
 const validateParams = (schema: ObjectSchema<any>) =>
   async (req: Request, _: Response, next: NextFunction) => {
     try {
-      await schema.validate(req.params, {abortEarly: false});
+      await schema.validate(req.params, { abortEarly: false });
       next()
     }
     catch (e: any) {
@@ -60,7 +60,7 @@ const validateParams = (schema: ObjectSchema<any>) =>
 const validateHeaders = (schema: ObjectSchema<any>) =>
   async (req: Request, _: Response, next: NextFunction) => {
     try {
-      await schema.validate(req.headers, {abortEarly: false});
+      await schema.validate(req.headers, { abortEarly: false });
       next()
     }
     catch (e: any) {

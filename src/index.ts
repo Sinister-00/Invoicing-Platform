@@ -6,14 +6,14 @@ import { ResponseBodyWithoutData } from './entities/response';
 import authRouter from './routers/auth.router';
 import productRouter from './routers/product.router';
 import { connectDB } from './utils/db';
+import { errorHandler } from './middleware/error.middleware';
+import { notFoundHandler } from './middleware/not-found.middleware';
 
 const app: Express = express();
 const port = 3001;
 
-app.use(helmet());
-
 app.use(cors());
-
+app.use(helmet());
 app.use(express.json());
 
 connectDB()
@@ -35,6 +35,11 @@ app.get('/', (req: Request, res: Response) => {
   res.send('We handle the boring stuff..!');
 });
 
+
 app.listen(port, () => {
   console.log(`[Server]: I am running at https://localhost:${port}`);
 });
+
+// Error handlers
+app.use(errorHandler);
+app.use(notFoundHandler);

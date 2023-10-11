@@ -1,9 +1,15 @@
-import {Router} from "express";
+import { Router } from "express";
 import authController from "../controllers/auth";
 import requestValidator from "../validators/request";
-import {signupSchema, signInSchema} from "../validators/auth";
+import { signupSchema, signInSchema } from "../validators/auth";
+import handlePong from "../controllers/pong";
 
 const authRouter = Router();
+
+authRouter.get(
+  "/",
+  handlePong
+);
 
 authRouter.post(
   "/signup",

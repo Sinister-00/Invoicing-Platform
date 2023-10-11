@@ -1,9 +1,9 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 import * as ProductService from "../../services/product";
 
 const getAll = async (req: Request, res: Response) => {
   try {
-    let {id} = req.params;
+    let { id } = req.params;
     const data = await ProductService.getAll(id);
 
     res.status(data.statusCode).send(data.body);
