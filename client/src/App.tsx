@@ -1,19 +1,20 @@
 import './App.css';
 
 import GlobalStyle from 'components/global-styles';
-import Header from 'components/header';
-import { routeList } from 'entities/route-to-component';
+import Routes from 'components/route-handler';
 import theme from 'entities/theme';
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import useFilterStore from 'store/useFilter';
+import useUserStore from 'store/useUser';
 import { ThemeProvider } from 'styled-components';
 
 import getProducts from './api/getProducts';
+import AuthProvider from './contexts/AuthContext';
 import useProductStore from './store/useProductStore';
 
 function App() {
   const { setProducts } = useProductStore();
+  const { setUserData } = useUserStore();
   const { setProducts: setFilterProducts } = useFilterStore();
 
   useEffect(() => {
@@ -23,18 +24,24 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem('plotline-userdata')) {
+      try {
+        const storedData = JSON.parse(localStorage.getItem('plotline-userdata') || '');
+        setUserData(storedData);
+      } catch (error) {
+        console.error('Error parsing "plotline-userdata" from local storage:', error);
+      }
+    }
+  }, []);
+
   return (
-    <BrowserRouter>
+    <AuthProvider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header />
-        <Routes>
-          {Object.keys(routeList).map((route, idx) => (
-            <Route key={idx} path={route} element={routeList[route]} />
-          ))}
-        </Routes>
+        <Routes />
       </ThemeProvider>
-    </BrowserRouter>
+    </AuthProvider>
   );
 }
 

@@ -1,4 +1,5 @@
 import Button from 'components/button';
+import Header from 'components/header';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -6,18 +7,21 @@ import Wrapper from './wrapper';
 
 const OrderPage = () => {
   return (
-    <Wrapper>
-      <div className="container">
-        <div>
-          <h3>Order Confirmed</h3>
-          <p>Your order will be Delivered soon!</p>
+    <>
+      <Header />
+      <Wrapper>
+        <div className="container">
+          <div>
+            <h3>Order Confirmed</h3>
+            <p>Your order will be Delivered soon!</p>
 
-          <NavLink to="/products">
-            <Button>Continue Shopping</Button>
-          </NavLink>
+            <NavLink to="/products">
+              <Button>Continue Shopping</Button>
+            </NavLink>
+          </div>
         </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </>
   );
 };
 

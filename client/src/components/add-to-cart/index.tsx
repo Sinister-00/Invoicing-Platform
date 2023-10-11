@@ -1,16 +1,16 @@
 import Button from 'components/button';
 import CartAmountToggle from 'components/cart-amount-toggle';
+import { Product } from 'entities/product';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
 
 import Wrapper from './wrapper';
-import { Product } from 'entities/product';
 
 type TAddToCart = {
   product: Product;
-}
+};
 
 const AddToCart: React.FC<TAddToCart> = ({ product }) => {
   const { addToCart } = useCartStore();

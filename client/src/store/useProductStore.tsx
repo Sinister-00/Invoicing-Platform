@@ -1,4 +1,4 @@
-import { ProductState, emptyProductResponse } from 'entities/product';
+import { emptyProductResponse, ProductState } from 'entities/product';
 import { create } from 'zustand';
 
 const useProductStore = create<ProductState>((set) => ({

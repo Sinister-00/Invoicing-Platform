@@ -1,39 +1,37 @@
-import axios from 'axios';
 import Button from 'components/button';
 import { ROUTES } from 'entities/routes';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CgClose, CgMenu } from 'react-icons/cg';
 import { FiShoppingCart } from 'react-icons/fi';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
+import useUserStore from 'store/useUser';
 
 import NavWrapper from './wrapper';
 
-const API = 'http://localhost:4000/auth/login';
-// const API = 'http://localhost:4000/auth/login';
-
 const Nav = () => {
-  const [userEmail, setUserEmail] = useState('');
-  const [menuIcon, setMenuIcon] = useState(true);
+  const navigate = useNavigate();
+  const { userData, resetUser } = useUserStore();
+  const [menuIcon, setMenuIcon] = useState(false);
   const { total_item } = useCartStore();
-  const email = JSON.parse(localStorage.getItem('userEmail') || '{}');
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const token = localStorage.getItem('token') || ' ';
-  //       const headers = { Authorization: `Bearer ${token}` };
-  //       const res = await axios.get(API, { headers });
-  //       setUserEmail(res.data.email);
-  //     } catch (e) {
-  //       console.error('Failed to fetch user data:', e);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, []);
 
-  const redirectToHome = () => {
-    window.location.href = '/login';
+  const isLoggedIn = !!userData.name;
+
+  const login = () => {
+    navigate(ROUTES.LOGIN, {
+      replace: true,
+    });
+    navigate(0);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('plotline-userdata');
+    resetUser();
+    navigate(ROUTES.HOME, {
+      replace: true,
+    });
+    navigate(0);
   };
 
   return (
@@ -77,8 +75,14 @@ const Nav = () => {
             </NavLink>
           </li>
 
-          {!!email && <h3>User: {userEmail}</h3>}
-          <Button onClick={() => redirectToHome()}>Log In</Button>
+          {isLoggedIn ? (
+            <>
+              <h3>User: {userData.name}</h3>
+              <Button onClick={() => logout()}>Log Out</Button>
+            </>
+          ) : (
+            <Button onClick={() => login()}>Log In</Button>
+          )}
 
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">

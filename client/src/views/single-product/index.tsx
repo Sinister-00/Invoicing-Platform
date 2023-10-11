@@ -1,4 +1,5 @@
 import AddToCart from 'components/add-to-cart';
+import Header from 'components/header';
 import PageNavigation from 'components/page-navigation';
 import ProductImage from 'components/product-image';
 import formatPrice from 'helpers/format-price';
@@ -32,66 +33,69 @@ const ProductPage = () => {
 
   const { name, company, price, description, stock, image } = singleProduct;
   return (
-    <Wrapper>
-      <PageNavigation title={name} />
-      <Container className="container">
-        <div className="grid grid-two-column">
-          {/* product Images  */}
-          <div className="product_images">
-            <ProductImage imgs={[{ url: image }]} />
-          </div>
-
-          <div className="product-data">
-            <h2>{name}</h2>
-
-            <p className="product-data-price">
-              MRP:
-              <del>{formatPrice(price + 250000)}</del>
-            </p>
-            <p className="product-data-price product-data-real-price">
-              Deal of the Day:{formatPrice(price)}
-            </p>
-            <p>{description}</p>
-            <div className="product-data-warranty">
-              <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />
-                <p>Free Delivery</p>
-              </div>
-
-              <div className="product-warranty-data">
-                <TbReplace className="warranty-icon" />
-                <p>30 Days Replacement</p>
-              </div>
-
-              <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />
-                <p>Plotline Delivered </p>
-              </div>
-
-              <div className="product-warranty-data">
-                <MdSecurity className="warranty-icon" />
-                <p>2 Year Warranty </p>
-              </div>
+    <>
+      <Header />
+      <Wrapper>
+        <PageNavigation title={name} />
+        <Container className="container">
+          <div className="grid grid-two-column">
+            {/* product Images  */}
+            <div className="product_images">
+              <ProductImage imgs={[{ url: image }]} />
             </div>
 
-            <div className="product-data-info">
-              <p>
-                Available:
-                <span> {stock > 0 ? 'In Stock' : 'Not Available'}</span>
+            <div className="product-data">
+              <h2>{name}</h2>
+
+              <p className="product-data-price">
+                MRP:
+                <del>{formatPrice(price + 250000)}</del>
               </p>
-              <p>
-                ID : <span> {id} </span>
+              <p className="product-data-price product-data-real-price">
+                Deal of the Day:{formatPrice(price)}
               </p>
-              <p>
-                Brand :<span> {company} </span>
-              </p>
+              <p>{description}</p>
+              <div className="product-data-warranty">
+                <div className="product-warranty-data">
+                  <TbTruckDelivery className="warranty-icon" />
+                  <p>Free Delivery</p>
+                </div>
+
+                <div className="product-warranty-data">
+                  <TbReplace className="warranty-icon" />
+                  <p>30 Days Replacement</p>
+                </div>
+
+                <div className="product-warranty-data">
+                  <TbTruckDelivery className="warranty-icon" />
+                  <p>Plotline Delivered </p>
+                </div>
+
+                <div className="product-warranty-data">
+                  <MdSecurity className="warranty-icon" />
+                  <p>2 Year Warranty </p>
+                </div>
+              </div>
+
+              <div className="product-data-info">
+                <p>
+                  Available:
+                  <span> {stock > 0 ? 'In Stock' : 'Not Available'}</span>
+                </p>
+                <p>
+                  ID : <span> {id} </span>
+                </p>
+                <p>
+                  Brand :<span> {company} </span>
+                </p>
+              </div>
+              <hr />
+              {stock > 0 && singleProduct && <AddToCart product={singleProduct} />}
             </div>
-            <hr />
-            {stock > 0 && singleProduct && <AddToCart product={singleProduct} />}
           </div>
-        </div>
-      </Container>
-    </Wrapper>
+        </Container>
+      </Wrapper>
+    </>
   );
 };
 

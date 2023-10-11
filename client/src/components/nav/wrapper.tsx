@@ -115,8 +115,7 @@ const NavWrapper = styled.nav`
       visibility: hidden;
       opacity: 0;
       transform: translateX(100%);
-      /* transform-origin: top; */
-      transition: all 3s linear;
+      transition: all 1s linear;
     }
 
     .active .navbar-lists {
@@ -125,7 +124,7 @@ const NavWrapper = styled.nav`
       transform: translateX(0);
       z-index: 999;
       transform-origin: right;
-      transition: all 3s linear;
+      transition: all 1s linear;
 
       .navbar-link {
         font-size: 4.2rem;

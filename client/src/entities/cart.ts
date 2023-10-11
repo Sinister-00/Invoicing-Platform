@@ -1,8 +1,8 @@
-import { Product } from "./product";
+import { Product } from './product';
 
 export interface CartItem {
   id: string;
-  name: string
+  name: string;
   color: string;
   amount: number;
   product: Product;
