@@ -13,11 +13,7 @@ const ProductImage = ({ imgs = [{ url: '' }] }) => {
           return (
             <figure key={index}>
               <button onKeyDown={() => setImage(curElm)} onClick={() => setImage(curElm)}>
-                <img
-                  src={curElm.url}
-                  alt={curElm.filename}
-                  className="box-image--style"
-                />
+                <img src={curElm.url} alt={'product'} className="box-image--style" />
               </button>
             </figure>
           );
@@ -25,7 +21,7 @@ const ProductImage = ({ imgs = [{ url: '' }] }) => {
       </div>
 
       <div className="main-screen">
-        <img src={image.url} alt={image.filename} />
+        <img src={image.url} alt={'product'} />
       </div>
     </Wrapper>
   );

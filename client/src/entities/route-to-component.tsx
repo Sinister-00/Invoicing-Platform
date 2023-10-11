@@ -5,7 +5,7 @@ import ContactPage from '../views/contact';
 import HomePage from '../views/home';
 import LoginPage from '../views/login';
 import OrderPage from '../views/order';
-import OrderHistoryPage from '../views/order-history';
+// import OrderHistoryPage from '../views/order-history';
 import ProductsPage from '../views/products';
 import SignUpPage from '../views/signup';
 import ProductPage from '../views/single-product';
@@ -16,7 +16,7 @@ export const routeList: Record<string, React.ReactNode> = {
   [ROUTES.ABOUT]: <AboutPage />,
   [ROUTES.PRODUCTS]: <ProductsPage />,
   [ROUTES.ORDER_PLACED]: <OrderPage />,
-  [ROUTES.ORDER_HISTORY]: <OrderHistoryPage />,
+  // [ROUTES.ORDER_HISTORY]: <OrderHistoryPage />,
   [ROUTES.LOGIN]: <LoginPage />,
   [ROUTES.SIGNUP]: <SignUpPage />,
   [ROUTES.BILL]: <BillPage />,

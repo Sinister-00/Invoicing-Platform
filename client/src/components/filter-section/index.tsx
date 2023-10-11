@@ -1,4 +1,5 @@
 import Button from 'components/button';
+import { Product } from 'entities/product';
 import formatPrice from 'helpers/format-price';
 import { FaCheck } from 'react-icons/fa';
 import useFilterStore from 'store/useFilter';
@@ -13,7 +14,7 @@ const FilterSection = () => {
     clearFilters,
   } = useFilterStore();
 
-  const getUniqueData = (data, attr) => {
+  const getUniqueData = (data: Product[], attr: keyof Product) => {
     let newVal = data.map((curElem) => {
       return curElem[attr];
     });
@@ -25,9 +26,9 @@ const FilterSection = () => {
     return (newVal = ['all', ...new Set(newVal)]);
   };
 
-  const categoryData = getUniqueData(all_products, 'category');
-  const companyData = getUniqueData(all_products, 'company');
-  const colorsData = getUniqueData(all_products, 'colors');
+  const categoryData = getUniqueData(all_products, 'category') as string[];
+  const companyData = getUniqueData(all_products, 'company') as string[];
+  const colorsData = getUniqueData(all_products, 'colors') as string[];
 
   return (
     <Wrapper>
@@ -52,9 +53,15 @@ const FilterSection = () => {
                 key={index}
                 type="button"
                 name="category"
-                value={curElem}
+                value={curElem as string}
                 className={curElem === category ? 'active' : ''}
-                onClick={updateFilterValue}
+                onClick={(e) =>
+                  updateFilterValue(
+                    e as unknown as React.ChangeEvent<
+                      HTMLInputElement | HTMLSelectElement
+                    >,
+                  )
+                }
               >
                 {curElem}
               </button>
@@ -71,11 +78,15 @@ const FilterSection = () => {
             name="company"
             id="company"
             className="filter-company--select"
-            onClick={updateFilterValue}
+            onClick={(e) =>
+              updateFilterValue(
+                e as unknown as React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+              )
+            }
           >
             {companyData.map((curElem, index) => {
               return (
-                <option key={index} value={curElem} name="company">
+                <option key={index} value={curElem}>
                   {curElem}
                 </option>
               );
@@ -97,7 +108,13 @@ const FilterSection = () => {
                   value={curColor}
                   name="color"
                   className="color-all--style"
-                  onClick={updateFilterValue}
+                  onClick={(e) =>
+                    updateFilterValue(
+                      e as unknown as React.ChangeEvent<
+                        HTMLInputElement | HTMLSelectElement
+                      >,
+                    )
+                  }
                 >
                   all
                 </button>
@@ -109,9 +126,15 @@ const FilterSection = () => {
                 type="button"
                 value={curColor}
                 name="color"
-                style={{ backgroundColor: curColor }}
+                style={{ backgroundColor: curColor as string }}
                 className={color === curColor ? 'btnStyle active' : 'btnStyle'}
-                onClick={updateFilterValue}
+                onClick={(e) =>
+                  updateFilterValue(
+                    e as unknown as React.ChangeEvent<
+                      HTMLInputElement | HTMLSelectElement
+                    >,
+                  )
+                }
               >
                 {color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>

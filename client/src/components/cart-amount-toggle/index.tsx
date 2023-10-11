@@ -1,6 +1,16 @@
 import { FaMinus, FaPlus } from 'react-icons/fa';
 
-const CartAmountToggle = ({ amount, setDecrease, setIncrease }) => {
+type CartAmountToggleProps = {
+  amount: number;
+  setDecrease: () => void;
+  setIncrease: () => void;
+};
+
+const CartAmountToggle: React.FC<CartAmountToggleProps> = ({
+  amount,
+  setDecrease,
+  setIncrease,
+}) => {
   return (
     <div className="cart-button">
       <div className="amount-toggle">

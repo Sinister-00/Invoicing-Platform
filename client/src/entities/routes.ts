@@ -9,5 +9,5 @@ export enum ROUTES {
   LOGIN = '/login',
   BILL = '/bill',
   ORDER_PLACED = '/order-placed',
-  ORDER_HISTORY = '/order-history',
+  // ORDER_HISTORY = '/order-history',
 }

@@ -1,4 +1,5 @@
 import { FilterActions, FilterState } from 'entities/filter';
+import { Product } from 'entities/product';
 import { create } from 'zustand';
 
 const initialState = {
@@ -95,7 +96,7 @@ const useFilterStore = create<FilterState & FilterActions>((set) => ({
         tempFilterProduct = tempFilterProduct.filter((curElem) => curElem.price <= price);
       }
 
-      const sortingProducts = (a, b) => {
+      const sortingProducts = (a: Product, b: Product) => {
         if (sorting_value === 'lowest') {
           return a.price - b.price;
         }
@@ -107,6 +108,8 @@ const useFilterStore = create<FilterState & FilterActions>((set) => ({
         }
         if (sorting_value === 'z-a') {
           return b.name.localeCompare(a.name);
+        } else {
+          return a.price - b.price;
         }
       };
 

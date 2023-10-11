@@ -31,8 +31,8 @@ async function getCart(): Promise<Cart> {
     );
 
     const response: AxiosResponse = await axios.get(
-      // `https://tax-api-testing.onrender.com/api/v1/cart/delete/specific/${productId}`,
-      `http://localhost:3001/api/v1/cart/get/all`,
+      `https://tax-api-testing.onrender.com/api/v1/cart/get/all`,
+      // `http://localhost:3001/api/v1/cart/get/all`,
       {
         headers: {
           'Content-Type': 'application/json',

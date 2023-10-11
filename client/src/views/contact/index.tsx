@@ -1,10 +1,13 @@
 import Header from 'components/header';
+import useUserStore from 'store/useUser';
 
+import { useAuth } from '../../contexts/AuthContext';
 import Wrapper from './wrapper';
 
 const ContactPage = () => {
-  const isAuthenticated = false;
-  const user = {};
+  const { userData } = useUserStore();
+  const { token } = useAuth();
+  const isAuthenticated = !!token;
 
   // handling form is left
   return (
@@ -19,7 +22,7 @@ const ContactPage = () => {
                 type="text"
                 placeholder="username"
                 name="username"
-                value={isAuthenticated ? user.name : ''}
+                value={isAuthenticated ? userData.name : ''}
                 required
                 autoComplete="off"
               />
@@ -29,7 +32,7 @@ const ContactPage = () => {
                 name="Email"
                 placeholder="Email"
                 autoComplete="off"
-                value={isAuthenticated ? user.email : ''}
+                value={isAuthenticated ? userData.email : ''}
                 required
               />
 

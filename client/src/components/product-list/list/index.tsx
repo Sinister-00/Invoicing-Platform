@@ -1,10 +1,11 @@
 import Button from 'components/button';
+import { Product } from 'entities/product';
 import formatPrice from 'helpers/format-price';
 import { NavLink } from 'react-router-dom';
 
 import Wrapper from './wrapper';
 
-const ListView = ({ products }) => {
+const ListView = ({ products }: { products: Product[] }) => {
   return (
     <Wrapper className="section">
       <div className="container grid">

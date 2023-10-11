@@ -10,7 +10,7 @@ import ContactPage from '../../views/contact';
 import HomePage from '../../views/home';
 import LoginPage from '../../views/login';
 import OrderPage from '../../views/order';
-import OrderHistoryPage from '../../views/order-history';
+// import OrderHistoryPage from '../../views/order-history';
 import ProductsPage from '../../views/products';
 import SignUpPage from '../../views/signup';
 import ProductPage from '../../views/single-product';
@@ -51,10 +51,10 @@ const Routes = () => {
           path: ROUTES.ORDER_PLACED,
           element: <OrderPage />,
         },
-        {
-          path: ROUTES.ORDER_HISTORY,
-          element: <OrderHistoryPage />,
-        },
+        // {
+        //   path: ROUTES.ORDER_HISTORY,
+        //   element: <OrderHistoryPage />,
+        // },
         {
           path: ROUTES.BILL,
           element: <BillPage />,

@@ -31,7 +31,7 @@ app.get("/api/v1", (req: Request, res: Response) => {
 // Route handlers
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/product", productRouter);
-app.use("/api/v1/auth", orderRouter);
+app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/cart", cartRouter);
 
 // --------------

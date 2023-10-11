@@ -61,7 +61,7 @@ const CartPage = () => {
               return (
                 <CartItem
                   tax={curElem.tax}
-                  totalAmount={curElem.taxItemPrice}
+                  totalAmount={parseInt(curElem.taxItemPrice)}
                   id={curElem.id.toString()}
                   color={curElem.product.colors[1]}
                   amount={curElem.quantity}

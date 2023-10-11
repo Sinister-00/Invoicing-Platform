@@ -5,8 +5,8 @@ async function removeAllFromCart(): Promise<any> {
   const token = (localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN) || '').replace(/"/g, '');
   try {
     const response: AxiosResponse = await axios.delete(
-      // `https://tax-api-testing.onrender.com/api/v1/cart/delete/all`,
-      `http://localhost:3001/api/v1/cart/delete/all`,
+      `https://tax-api-testing.onrender.com/api/v1/cart/delete/all`,
+      // `http://localhost:3001/api/v1/cart/delete/all`,
       {
         headers: {
           'Content-Type': 'application/json',

@@ -6,8 +6,8 @@ async function placeOrder(): Promise<any> {
 
   try {
     const response = await axios.post(
-      // 'https://tax-api-testing.onrender.com/api/v1/order/place',
-      'http://localhost:3001/api/v1/order/place',
+      'https://tax-api-testing.onrender.com/api/v1/order/place',
+      // 'http://localhost:3001/api/v1/order/place',
       {
         headers: {
           'Content-Type': 'application/json',

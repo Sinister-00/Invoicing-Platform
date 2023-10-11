@@ -14,12 +14,15 @@ const getCartItems = async (
       product: true,
     },
     where: {
-      user: Equal(user),
+      user: {
+        id: Equal(user.id)
+      },
     },
     order: {
       id: "ASC",
     },
   });
+
   if (!items) {
     return {
       statusCode: 200,

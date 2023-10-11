@@ -37,7 +37,7 @@ const Sort = () => {
             name="sort"
             id="sort"
             className="sort-selection--style"
-            onClick={sorting}
+            onClick={(e) => sorting(e as unknown as React.ChangeEvent<HTMLSelectElement>)}
           >
             <option value="lowest">Price(lowest)</option>
             <option value="#" disabled></option>

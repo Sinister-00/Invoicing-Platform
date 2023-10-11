@@ -19,17 +19,6 @@ const addCart = async (
     };
   }
 
-  if (data.product_id) {
-    return {
-      statusCode: 400,
-      body: {
-        success: false,
-        message:
-          "🔗 Please provide only one item. Either product ID",
-      },
-    };
-  }
-
   let item;
   if (data.product_id) {
     item = await dbSource.getRepository(Product).findOneBy({
@@ -50,7 +39,6 @@ const addCart = async (
   cartItem.quantity = data.quantity;
   cartItem.user = userModel;
   cartItem.product = item as Product
-
   const cartRepository = await dbSource.getRepository(CartItem);
   const addedItem = await cartRepository.save(cartItem);
   return {

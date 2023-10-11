@@ -9,8 +9,8 @@ async function removeFromCart(productId: string): Promise<any> {
     );
 
     const response: AxiosResponse = await axios.delete(
-      // `https://tax-api-testing.onrender.com/api/v1/cart/delete/specific/${productId}`,
-      `http://localhost:3001/api/v1/cart/delete/specific/${productId}`,
+      `https://tax-api-testing.onrender.com/api/v1/cart/delete/specific/${productId}`,
+      // `http://localhost:3001/api/v1/cart/delete/specific/${productId}`,
       {
         headers: {
           'Content-Type': 'application/json',

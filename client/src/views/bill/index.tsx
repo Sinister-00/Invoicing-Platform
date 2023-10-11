@@ -1,15 +1,14 @@
 import axios from 'axios';
 import Button from 'components/button';
 import Header from 'components/header';
+import { ROUTES } from 'entities/routes';
 import formatPrice from 'helpers/format-price';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import useCartStore from 'store/useCartStore';
 
 import getCart, { Cart, emptyCart } from '../../api/getCart';
 import placeOrder from '../../api/postOrder';
 import Wrapper from './wrapper';
-import { ROUTES } from 'entities/routes';
 
 const BillPage = () => {
   const [loading, setLoading] = useState(false);

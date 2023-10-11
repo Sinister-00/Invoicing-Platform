@@ -12,8 +12,8 @@ async function addToCart(productId: string, quantity: number): Promise<any> {
       product_id: productId,
     };
     const response: AxiosResponse = await axios.post(
-      // 'https://tax-api-testing.onrender.com/api/v1/cart/add',
-      'http://localhost:3001/api/v1/cart/add',
+      'https://tax-api-testing.onrender.com/api/v1/cart/add',
+      // 'http://localhost:3001/api/v1/cart/add',
       JSON.stringify(body),
       {
         headers: {

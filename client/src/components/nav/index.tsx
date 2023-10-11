@@ -65,15 +65,6 @@ const Nav = () => {
               Products
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/orderhistory"
-              className="navbar-link "
-              onClick={() => setMenuIcon(false)}
-            >
-              Orders
-            </NavLink>
-          </li>
 
           {isLoggedIn ? (
             <>

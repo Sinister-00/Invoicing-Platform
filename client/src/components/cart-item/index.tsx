@@ -1,4 +1,4 @@
-import { type CartItem } from 'entities/cart';
+import { type CartItem as TCartItem } from 'entities/cart';
 import formatPrice from 'helpers/format-price';
 import { FaTrash } from 'react-icons/fa';
 import useCartStore from 'store/useCartStore';
@@ -6,14 +6,23 @@ import useCartStore from 'store/useCartStore';
 import removeFromCart from '../../api/removeFromCart';
 import Toggle from './toggle';
 
-type CartItemProps = CartItem & {
+type CartItemProps = TCartItem & {
   image: string;
   price: number;
   tax: number;
   totalAmount: number;
 };
 
-const CartItem: React.FC<CartItemProps> = ({ id, totalAmount, tax, name, image, price, amount, product }) => {
+const CartItem: React.FC<CartItemProps> = ({
+  id,
+  totalAmount,
+  tax,
+  name,
+  image,
+  price,
+  amount,
+  product,
+}) => {
   const { removeItem, setDecrease, setIncrement } = useCartStore();
   const handleClick = async () => {
     await removeFromCart(id);
@@ -45,7 +54,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, totalAmount, tax, name, image, 
       </div>
 
       <div className="cart-hide">
-        <p> {formatPrice((totalAmount * amount) + (tax / 100))} </p>
+        <p> {formatPrice(totalAmount * amount + tax / 100)} </p>
       </div>
 
       <button onClick={handleClick}>
