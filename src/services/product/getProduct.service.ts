@@ -1,6 +1,6 @@
-import {dbSource} from "../../db";
+import { dbSource } from "../../db";
 import Product from "../../entities/db/product";
-import {APIResponse} from "../../entities/response";
+import { APIResponse } from "../../entities/response";
 
 const getAll = async (
   page: string
@@ -9,10 +9,10 @@ const getAll = async (
   if (+page < 1) {
     return {
       statusCode: 400,
-      body: {success: false, message: "🛒 Page Number should start from 1"},
+      body: { success: false, message: "🛒 Page Number should start from 1" },
     };
   }
-  const limit: number = 5;
+  const limit: number = 10;
   const skip: number = (+page - 1) * limit;
   //console.log(typeof skip);
   const products = await dbSource.getRepository(Product).find({
@@ -24,7 +24,7 @@ const getAll = async (
   });
   return {
     statusCode: 200,
-    body: {success: true, message: "🛒 Fetched all products", data: products},
+    body: { success: true, message: "🛒 Fetched all products", data: products },
   };
 };
 
@@ -46,8 +46,8 @@ const getProductbyID = async (
   }
   return {
     statusCode: 200,
-    body: {success: true, message: "🛒 Fetched the product", data: product},
+    body: { success: true, message: "🛒 Fetched the product", data: product },
   };
 };
 
-export {getAll, getProductbyID};
+export { getAll, getProductbyID };

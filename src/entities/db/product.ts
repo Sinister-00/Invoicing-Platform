@@ -2,34 +2,44 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  Relation,
-  OneToMany,
 } from "typeorm";
-import CartItem from "./cart-items";
-import OrderItem from "./order-item";
-import ColumnNumericTransformer from "../../utils/numeric-transformer";
 
 
 @Entity()
 export default class Product {
   @PrimaryGeneratedColumn()
-  id: number;
+  _id: string;
 
-  @Column({
-    length: 200,
-  })
+  @Column()
+  id: string;
+
+  @Column()
   name: string;
 
-  @Column("decimal", {
-    precision: 7,
-    scale: 2,
-    transformer: new ColumnNumericTransformer(),
-  })
+  @Column()
+  company: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
-  @OneToMany(() => CartItem, (cartItem) => cartItem.product)
-  cartItems: Relation<CartItem[]>;
+  @Column('simple-array', { nullable: true })
+  colors: string[];
 
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
-  orderItems: Relation<OrderItem[]>;
+  @Column()
+  image: string;
+
+  @Column('text')
+  description: string;
+
+  @Column()
+  category: string;
+
+  @Column('boolean')
+  featured: boolean;
+
+  @Column('int')
+  __v: number;
+
+  @Column('int')
+  stock: number;
 }
