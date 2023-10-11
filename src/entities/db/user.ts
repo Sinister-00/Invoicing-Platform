@@ -2,11 +2,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
-  Relation,
 } from "typeorm";
-import Order from "./order";
-import CartItem from "./cart-items";
 
 
 @Entity()
@@ -32,15 +28,9 @@ export default class User {
   @Column()
   password: string;
 
-  @Column({default: false})
+  @Column({ default: false })
   isVerified: boolean;
 
-  @Column({default: false})
+  @Column({ default: false })
   isAdmin: boolean;
-
-  @OneToMany(() => CartItem, (cartItem) => cartItem.user)
-  cartItems: Relation<CartItem[]>;
-
-  @OneToMany(() => Order, (order) => order.user)
-  orders: Relation<Order[]>;
 }

@@ -1,13 +1,12 @@
-import {dbSource} from "../../db";
+import { dbSource } from "../../db";
 import Product from "../../entities/db/product";
-import {APIResponse} from "../../entities/response";
-import {TModifyProductSchema} from "../../validators/product";
+import { APIResponse } from "../../entities/response";
+import { TModifyProductSchema } from "../../validators/product";
 
 const modifyProduct = async (
   id: number,
   data: TModifyProductSchema
 ): Promise<APIResponse<undefined>> => {
-  /* Delete a specific product */
   if (!data.name && !data.price) {
     return {
       statusCode: 400,
@@ -19,7 +18,7 @@ const modifyProduct = async (
   }
   const productRepository = await dbSource.getRepository(Product);
   const product = await productRepository.findBy({
-    id: id,
+    id: id.toString(),
   });
   if (product.length === 0) {
     return {
@@ -30,11 +29,11 @@ const modifyProduct = async (
       },
     };
   }
-  await productRepository.update({id: id}, data);
+  await productRepository.update({ id: id.toString() }, data);
   return {
     statusCode: 200,
-    body: {success: true, message: "🛒 Modified the product successfully"},
+    body: { success: true, message: "🛒 Modified the product successfully" },
   };
 };
 
-export {modifyProduct};
+export { modifyProduct };

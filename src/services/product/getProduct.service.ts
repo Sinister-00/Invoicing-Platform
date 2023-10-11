@@ -33,7 +33,7 @@ const getProductbyID = async (
 ): Promise<APIResponse<Array<Product>>> => {
   /* fetch the specific product here */
   const product = await dbSource.getRepository(Product).findBy({
-    id: id,
+    id: id.toString(),
   });
   if (product.length === 0) {
     return {

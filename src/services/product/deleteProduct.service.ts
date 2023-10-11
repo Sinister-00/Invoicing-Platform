@@ -8,7 +8,7 @@ const deleteProduct = async (
   /* Delete a specific product */
   const productRepository = await dbSource.getRepository(Product);
   const product = await productRepository.findBy({
-    id: id,
+    id: id.toString(),
   });
   if (product.length === 0) {
     return {

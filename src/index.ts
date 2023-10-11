@@ -1,13 +1,11 @@
-import express, {Express, Request, Response} from 'express';
+import express, { Express, Request, Response } from 'express';
 import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
-import {ResponseBodyWithoutData} from './entities/response';
+import { ResponseBodyWithoutData } from './entities/response';
 import authRouter from './routers/auth.router';
-import orderRouter from './routers/order.router';
-import cartRouter from './routers/cart.router';
 import productRouter from './routers/product.router';
-import {connectDB} from './utils/db';
+import { connectDB } from './utils/db';
 
 const app: Express = express();
 const port = 3001;
@@ -30,8 +28,6 @@ app.get("/api/v1", (req: Request, res: Response) => {
 
 // Route handlers
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/auth", orderRouter);
-app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/product", productRouter);
 
 // --------------
