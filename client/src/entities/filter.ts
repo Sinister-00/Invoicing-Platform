@@ -17,6 +17,7 @@ export interface FilterState {
 }
 
 export interface FilterActions {
+  setProducts: (products: Product[]) => void;
   setGridView: () => void;
   setListView: () => void;
   sorting: (event: React.ChangeEvent<HTMLSelectElement>) => void;

@@ -2,23 +2,26 @@ import './App.css';
 
 import GlobalStyle from 'components/global-styles';
 import Header from 'components/header';
-import { baseRouter, routeList } from 'entities/route-to-component';
+import { routeList } from 'entities/route-to-component';
 import theme from 'entities/theme';
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import useFilterStore from 'store/useFilter';
 import { ThemeProvider } from 'styled-components';
 
+import getProducts from './api/getProducts';
 import useProductStore from './store/useProductStore';
-import HomePage from './views/home';
-
-const API = 'http://localhost:4000/products';
 
 function App() {
-  // const { getProducts } = useProductStore();
+  const { setProducts } = useProductStore();
+  const { setProducts: setFilterProducts } = useFilterStore();
 
-  // useEffect(() => {
-  //   getProducts(API);
-  // }, []);
+  useEffect(() => {
+    getProducts().then((res) => {
+      setProducts(res);
+      setFilterProducts(res);
+    });
+  }, []);
 
   return (
     <BrowserRouter>

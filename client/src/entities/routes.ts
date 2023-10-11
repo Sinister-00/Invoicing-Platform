@@ -5,7 +5,7 @@ export enum ROUTES {
   CONTACT = '/contact',
   PRODUCT = '/single-product/:id',
   CART = '/cart',
-  SIGNIN = '/signin',
+  SIGNUP = '/signup',
   LOGIN = '/login',
   BILL = '/bill',
   ORDER_PLACED = '/order-placed',

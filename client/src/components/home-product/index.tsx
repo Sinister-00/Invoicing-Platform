@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Product: React.FC<any> = (props) => {
   const { id, name, image, price, category } = props;
   return (
-    <NavLink to={`/singleproduct/${id}`}>
+    <NavLink to={`/single-product/${id}`}>
       <div className="card">
         <figure>
           <img src={image} alt={name} />

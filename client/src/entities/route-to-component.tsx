@@ -1,5 +1,3 @@
-import { createBrowserRouter } from 'react-router-dom';
-
 import AboutPage from '../views/about';
 import BillPage from '../views/bill';
 import CartPage from '../views/cart';
@@ -9,7 +7,7 @@ import LoginPage from '../views/login';
 import OrderPage from '../views/order';
 import OrderHistoryPage from '../views/order-history';
 import ProductsPage from '../views/products';
-import SignInPage from '../views/signin';
+import SignUpPage from '../views/signup';
 import ProductPage from '../views/single-product';
 import { ROUTES } from './routes';
 
@@ -20,16 +18,9 @@ export const routeList: Record<string, React.ReactNode> = {
   [ROUTES.ORDER_PLACED]: <OrderPage />,
   [ROUTES.ORDER_HISTORY]: <OrderHistoryPage />,
   [ROUTES.LOGIN]: <LoginPage />,
-  [ROUTES.SIGNIN]: <SignInPage />,
+  [ROUTES.SIGNUP]: <SignUpPage />,
   [ROUTES.BILL]: <BillPage />,
   [ROUTES.CART]: <CartPage />,
   [ROUTES.CONTACT]: <ContactPage />,
   [ROUTES.PRODUCT]: <ProductPage />,
 };
-
-const baseRouterArray = Object.keys(routeList).map((route) => ({
-  path: route,
-  element: routeList[route],
-}));
-
-export const baseRouter = createBrowserRouter(baseRouterArray);

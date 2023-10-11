@@ -1,8 +1,11 @@
+import { Product } from "./product";
+
 export interface CartItem {
   id: string;
+  name: string
   color: string;
   amount: number;
-  product: string;
+  product: Product;
 }
 
 export interface CartState {
@@ -16,7 +19,7 @@ export interface CartState {
     name: string,
     color: string,
     amount: number,
-    product: string,
+    product: Product,
   ) => void;
   setDecrease: (id: string) => void;
   setIncrement: (id: string) => void;

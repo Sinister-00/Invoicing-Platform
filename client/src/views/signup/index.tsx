@@ -1,44 +1,52 @@
 import axios from 'axios';
 import Button from 'components/button';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Wrapper from './wrapper';
 
-const API_URL = 'https://localhost:4000/auth';
+const API_URL = 'https://localhost:4000/auth/register';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+  // const [redirectToHome, setRedirectToHome] = useState(false);
 
-  const handleLogin = async () => {
+  const handleSignIn = async () => {
+    const userData = {
+      email,
+      password,
+    };
+
     // try {
-    //   const response = await axios.post(`${API_URL}/login`, { email, password });
+    //   const response = await axios.post(API_URL, userData);
+
     //   if (response.status === 200) {
-    //     console.log('User logged in successfully');
-    //     // const token = response.data.accessToken;
-    //     console.log('Response data:', response.data);
+    //     console.log('User registered successfully');
     //     const userEmail = response.data.getemail;
     //     localStorage.setItem('userEmail', JSON.stringify(userEmail));
     //     console.log(userEmail);
-    //     navigate('/');
-    //     setErrorMessage('');
+    //     window.location.href = '/';
     //   } else {
-    //     console.error('Failed to log in');
+    //     console.error('Failed to register user');
     //   }
     // } catch (error) {
-    //   setErrorMessage('Invalid username or password');
+    //   setErrorMessage('User already exit / type valid email address');
     //   console.error('An error occurred', error);
     // }
   };
 
   return (
     <Wrapper>
-      <div className="login-container">
-        <h1>Login</h1>
+      <div className="sign-in-container">
+        <h1>Sign Up</h1>
         <div className="input-container">
+          <input
+            type="name"
+            placeholder="Username"
+            // value={name}
+            // onChange={(e) => setEmail(e.target.value)}
+          />
           <input
             type="email"
             placeholder="Email"
@@ -51,10 +59,11 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleLogin}>Login</Button>
-          {errorMessage && <p style={{ color: 'red' }}>({errorMessage})</p>}
+          <Button onClick={handleSignIn}>Sign In</Button>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
           <p>
-            New User? <a href="/signup">SignUp</a>
+            Already have an account ?<a href="/login"> click here</a>
           </p>
         </div>
       </div>
@@ -62,4 +71,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

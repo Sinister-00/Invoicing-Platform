@@ -21,6 +21,7 @@ const useFilterStore = create<FilterState & FilterActions>((set) => ({
   ...initialState,
   setGridView: () => set({ grid_view: true }),
   setListView: () => set({ grid_view: false }),
+  setProducts: (products) => set((state) => ({ ...state, filter_products: products })),
   sorting: (event) => set({ sorting_value: event.target.value }),
   updateFilterValue: (event) => {
     const { name, value } = event.target;

@@ -39,7 +39,7 @@ const SignInPage = () => {
   return (
     <Wrapper>
       <div className="sign-in-container">
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <div className="input-container">
           <input
             type="name"
@@ -59,7 +59,7 @@ const SignInPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleSignIn}>Sign In</Button>
+          <Button onClick={handleSignIn}>Sign Up</Button>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
           <p>

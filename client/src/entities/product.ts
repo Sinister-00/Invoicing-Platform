@@ -1,9 +1,16 @@
-export interface Product {
-  id: number;
+export type Product = {
+  id: string;
   name: string;
+  company: string;
+  price: number;
+  colors: string[];
+  image: string;
+  description: string;
+  category: string;
+  dateAdded: string;
   featured: boolean;
-  // Add other product properties here
-}
+  stock: number;
+};
 
 export interface ProductState {
   isLoading: boolean;
@@ -11,7 +18,22 @@ export interface ProductState {
   products: Product[];
   featureProducts: Product[];
   isSingleLoading: boolean;
-  singleProduct: Product | null;
-  getProducts: (url: string) => Promise<void>;
-  getSingleProduct: (url: string) => Promise<void>;
+  singleProduct: Product;
+  setSingleLoading: (state: boolean) => void;
+  setProducts: (products: Product[]) => void;
+  setSingleProduct: (singleProduct: Product) => void;
 }
+
+export const emptyProductResponse: Product = {
+  id: '',
+  name: '',
+  company: '',
+  price: 0,
+  colors: [],
+  image: '',
+  description: '',
+  category: '',
+  dateAdded: '',
+  featured: false,
+  stock: 0,
+};
