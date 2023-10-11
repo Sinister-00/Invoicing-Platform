@@ -35,10 +35,7 @@ export default class Product {
   category: string;
 
   @Column('boolean')
-  featured: boolean;
-
-  @Column('int')
-  __v: number;
+  featured: boolean;  
 
   @Column('int')
   stock: number;
