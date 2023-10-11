@@ -10,7 +10,9 @@ export default class Product {
   @PrimaryGeneratedColumn()
   _id: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   id: string;
 
   @Column()
@@ -35,7 +37,7 @@ export default class Product {
   category: string;
 
   @Column('boolean')
-  featured: boolean;  
+  featured: boolean;
 
   @Column('int')
   stock: number;

@@ -12,7 +12,7 @@ const getAll = async (
       body: { success: false, message: "🛒 Page Number should start from 1" },
     };
   }
-  const limit: number = 10;
+  const limit: number = 15;
   const skip: number = (+page - 1) * limit;
   //console.log(typeof skip);
   const products = await dbSource.getRepository(Product).find({
