@@ -1,6 +1,6 @@
 import addCart from "./addCart";
-import getCartItems from "./getCartItems";
+import getCartItems from "./getCartItem";
 import deleteCartItems from "./deleteCartItems";
-import deleteSpecificCartItems from "./deleteSpecificCartItems";
+import deleteSpecificCartItems from "./deleteSpecificCartItem";
 
-export {addCart, getCartItems, deleteCartItems, deleteSpecificCartItems};
+export { addCart, getCartItems, deleteCartItems, deleteSpecificCartItems };

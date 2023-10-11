@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
 import * as CartService from "../../services/cart";
 
-const deleteCartItems = async (req: Request, res: Response) => {
+const deleteSpecificCartItems = async (req: Request, res: Response) => {
   try {
-    const data = await CartService.deleteCartItems(res.locals.user);
+    const { id } = req.params;
+    const data = await CartService.deleteSpecificCartItems(
+      res.locals.user,
+      +id
+    );
 
     res.status(data.statusCode).send(data.body);
   } catch (e: any) {
@@ -13,4 +17,4 @@ const deleteCartItems = async (req: Request, res: Response) => {
   }
 };
 
-export default deleteCartItems
+export default deleteSpecificCartItems

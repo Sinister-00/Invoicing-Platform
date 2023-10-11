@@ -8,6 +8,8 @@ import productRouter from './routers/product.router';
 import { connectDB } from './utils/db';
 import { errorHandler } from './middleware/error.middleware';
 import { notFoundHandler } from './middleware/not-found.middleware';
+import orderRouter from './routers/order.route';
+import cartRouter from './routers/cart.router';
 
 const app: Express = express();
 const port = 3001;
@@ -29,6 +31,8 @@ app.get("/api/v1", (req: Request, res: Response) => {
 // Route handlers
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/auth", orderRouter);
+app.use("/api/v1/cart", cartRouter);
 
 // --------------
 app.get('/', (req: Request, res: Response) => {

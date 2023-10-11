@@ -7,7 +7,6 @@ import {
 } from "typeorm";
 import Order from "./order";
 import Product from "./product";
-import Service from "./service";
 import ColumnNumericTransformer from "../../utils/numeric-transformer";
 
 @Entity()
@@ -15,14 +14,11 @@ export default class OrderItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Order, (order) => order.orderItems, {nullable: false})
+  @ManyToOne(() => Order, (order) => order.orderItems, { nullable: false })
   order: Relation<Order>;
 
   @ManyToOne(() => Product, (product) => product.orderItems)
   product: Relation<Product>;
-
-  @ManyToOne(() => Service, (service) => service.orderItems)
-  service: Relation<Service>;
 
   @Column()
   quantity: number;

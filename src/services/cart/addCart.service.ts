@@ -1,10 +1,9 @@
-import {dbSource} from "../../db";
+import { dbSource } from "../../db";
 import CartItem from "../../entities/db/cart-items";
 import Product from "../../entities/db/product";
-import Service from "../../entities/db/service";
 import User from "../../entities/db/user";
-import {APIResponse} from "../../entities/response";
-import {TAddCartSchema} from "../../validators/cart";
+import { APIResponse } from "../../entities/response";
+import { TAddCartSchema } from "../../validators/cart";
 
 const addCart = async (
   data: TAddCartSchema,
@@ -34,11 +33,7 @@ const addCart = async (
   let item;
   if (data.product_id) {
     item = await dbSource.getRepository(Product).findOneBy({
-      id: data.product_id,
-    });
-  } else {
-    item = await dbSource.getRepository(Service).findOneBy({
-      id: data.service_id,
+      id: data.product_id.toString(),
     });
   }
   if (!item) {
@@ -54,7 +49,7 @@ const addCart = async (
   const cartItem = new CartItem();
   cartItem.quantity = data.quantity;
   cartItem.user = userModel;
-  data.product_id ? (cartItem.product = item) : (cartItem.service = item);
+  cartItem.product = item as Product
 
   const cartRepository = await dbSource.getRepository(CartItem);
   const addedItem = await cartRepository.save(cartItem);
@@ -65,11 +60,11 @@ const addCart = async (
       message: "🛍️ Added the product successfully",
       data: {
         id: addedItem.id,
-        item: data.product_id ? cartItem.product : cartItem.service,
-        type: data.product_id ? "product" : "service",
+        item: cartItem.product,
+        type: "product",
       },
     },
   };
 };
 
-export {addCart};
+export { addCart };

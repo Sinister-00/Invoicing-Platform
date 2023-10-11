@@ -2,7 +2,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  OneToMany,
+  Relation,
 } from "typeorm";
+import CartItem from "./cart-items";
+import OrderItem from "./order-item";
 
 
 @Entity()
@@ -41,4 +45,11 @@ export default class Product {
 
   @Column('int')
   stock: number;
+
+  @OneToMany(() => CartItem, (cartItem) => cartItem.product)
+  cartItems: Relation<CartItem[]>;
+
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
+  orderItems: Relation<OrderItem[]>;
 }

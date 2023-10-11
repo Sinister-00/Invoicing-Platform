@@ -1,7 +1,7 @@
-import {dbSource} from "../../db";
+import { dbSource } from "../../db";
 import User from "../../entities/db/user";
 import CartItem from "../../entities/db/cart-items";
-import {APIResponseWithoutData} from "../../entities/response";
+import { APIResponseWithoutData } from "../../entities/response";
 
 const deleteCartItems = async (
   user: User
@@ -37,4 +37,4 @@ const deleteSpecificCartItems = async (
   };
 };
 
-export {deleteCartItems, deleteSpecificCartItems};
+export { deleteCartItems, deleteSpecificCartItems };

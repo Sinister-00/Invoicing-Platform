@@ -2,8 +2,11 @@ import "dotenv/config";
 import { DataSource } from "typeorm";
 import User from "./entities/db/user";
 import Product from "./entities/db/product";
+import Order from "./entities/db/order";
+import CartItem from "./entities/db/cart-items";
+import OrderItem from "./entities/db/order-item";
 
-const dbEntities = [User, Product]
+const dbEntities = [User, Product, CartItem, Order, OrderItem]
 
 export const dbSource = new DataSource({
   type: "postgres",

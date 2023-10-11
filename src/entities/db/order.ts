@@ -15,7 +15,7 @@ export default class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.orders, {nullable: false})
+  @ManyToOne(() => User, (user) => user.orders, { nullable: false })
   user: Relation<User>;
 
   @Column("decimal", {

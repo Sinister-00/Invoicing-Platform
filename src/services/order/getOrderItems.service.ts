@@ -1,7 +1,8 @@
-import {dbSource} from "../../db";
+import { Equal } from "typeorm";
+import { dbSource } from "../../db";
 import Order from "../../entities/db/order";
 import User from "../../entities/db/user";
-import {APIResponse} from "../../entities/response";
+import { APIResponse } from "../../entities/response";
 
 const getOrderItems = async (
   user: User,
@@ -9,8 +10,8 @@ const getOrderItems = async (
 ): Promise<APIResponse<Order[]>> => {
   const orderItems = await dbSource.getRepository(Order).find({
     where: {
-      id: id,
-      user: user,
+      id: Equal(id),
+      user: Equal(user),
     },
     relations: {
       orderItems: true,

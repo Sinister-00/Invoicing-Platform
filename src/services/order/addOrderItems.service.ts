@@ -1,7 +1,7 @@
-import {dbSource} from "../../db";
+import { dbSource } from "../../db";
 import Order from "../../entities/db/order";
 import OrderItem from "../../entities/db/order-item";
-import {AllCartItems, CartTaxItem} from "../../entities/taxed-items";
+import { AllCartItems, CartTaxItem } from "../../entities/taxed-items";
 
 const addOrderItems = async (
   result: AllCartItems,
@@ -25,21 +25,5 @@ const addOrderItems = async (
   });
 
   console.info("Added all products from cart to order items");
-
-  result.services.forEach(async (item: CartTaxItem) => {
-    try {
-      const service = new OrderItem();
-      service.order = newOrder;
-      service.service = item.service;
-      service.quantity = item.quantity;
-      service.tax = item.tax;
-      service.price = item.service.price;
-      await orderItemsRepository.save(service);
-    } catch (err: any) {
-      console.error(err.message);
-    }
-  });
-
-  console.info("Added all services from cart to order items");
 };
 export default addOrderItems;

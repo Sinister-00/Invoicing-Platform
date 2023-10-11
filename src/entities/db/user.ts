@@ -2,7 +2,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  OneToMany, Relation
 } from "typeorm";
+import CartItem from "./cart-items";
+import Order from "./order";
 
 
 @Entity()
@@ -33,4 +36,10 @@ export default class User {
 
   @Column({ default: false })
   isAdmin: boolean;
+
+  @OneToMany(() => CartItem, (cartItem) => cartItem.user)
+  cartItems: Relation<CartItem[]>;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Relation<Order[]>;
 }

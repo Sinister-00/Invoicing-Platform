@@ -1,10 +1,10 @@
 import * as cartController from "../controllers/cart";
 import requestValidator from "../validators/request";
-import {jwtHeader} from "../validators/jwt";
-import {getProduct} from "../validators/product";
-import {addCart} from "../validators/cart";
+import { jwtHeader } from "../validators/jwt";
+import { getProduct } from "../validators/product";
+import { addCart } from "../validators/cart";
 import validateJWT from "../utils/validate-jwt";
-import {Router} from "express";
+import { Router } from "express";
 
 const cartRouter = Router();
 
@@ -38,4 +38,4 @@ cartRouter.delete(
   cartController.deleteSpecificCartItems
 );
 
-export {cartRouter as default};
+export { cartRouter as default };

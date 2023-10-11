@@ -1,5 +1,5 @@
-import {addCart} from "./addCart.service";
-import {deleteCartItems, deleteSpecificCartItems} from "../order";
-import {getCartItems} from "./getCart.service";
+import { addCart } from "./addCart.service";
+import { deleteCartItems, deleteSpecificCartItems } from "../order";
+import { getCartItems } from "./getCartitems.service";
 
-export {addCart, deleteCartItems, deleteSpecificCartItems, getCartItems}
+export { addCart, deleteCartItems, deleteSpecificCartItems, getCartItems }

@@ -1,5 +1,5 @@
 import CartItem from "../../entities/db/cart-items";
-import {AllCartItems, CartTaxItem} from "../../entities/taxed-items";
+import { AllCartItems, CartTaxItem } from "../../entities/taxed-items";
 
 const productTax = (price: number): number => {
   let [pa, pb, pc] = [0, 0, 200];
@@ -26,7 +26,7 @@ const serviceTax = (price: number): number => {
 
 const makeProductTotal = (
   result: AllCartItems
-): {sumPrice: number; sumTax: number} => {
+): { sumPrice: number; sumTax: number } => {
   let [sumPrice, sumTax] = [0, 0];
 
   result.products.forEach(
@@ -37,12 +37,12 @@ const makeProductTotal = (
     (product) => (sumTax += product.tax * product.quantity)
   );
 
-  return {sumPrice: +sumPrice.toFixed(2), sumTax: +sumTax.toFixed(2)};
+  return { sumPrice: +sumPrice.toFixed(2), sumTax: +sumTax.toFixed(2) };
 };
 
 const makeServiceTotal = (
   result: AllCartItems
-): {sumPrice: number; sumTax: number} => {
+): { sumPrice: number; sumTax: number } => {
   let [sumPrice, sumTax] = [0, 0];
 
   result.services.forEach(
@@ -53,7 +53,7 @@ const makeServiceTotal = (
     (service) => (sumTax += service.tax * service.quantity)
   );
 
-  return {sumPrice: +sumPrice.toFixed(2), sumTax: +sumTax.toFixed(2)};
+  return { sumPrice: +sumPrice.toFixed(2), sumTax: +sumTax.toFixed(2) };
 };
 
 const itemTaxCalculator = async (items: CartItem[]): Promise<AllCartItems> => {
@@ -64,31 +64,17 @@ const itemTaxCalculator = async (items: CartItem[]): Promise<AllCartItems> => {
     taxTotal: 0,
   };
   items.forEach((item) => {
-    if (item.service === null) {
-      const price = item.product.price;
-      const tax = productTax(price);
+    const price = item.product.price;
+    const tax = productTax(price);
 
-      const itemToPush: CartTaxItem = {
-        ...item,
-        tax: tax,
-        taxItemPrice: price + tax,
-        itemTotal: (price + tax) * item.quantity,
-      };
+    const itemToPush: CartTaxItem = {
+      ...item,
+      tax: tax,
+      taxItemPrice: price + tax,
+      itemTotal: (price + tax) * item.quantity,
+    };
 
-      result.products.push(itemToPush);
-    } else {
-      const price = item.service.price;
-      const tax = serviceTax(price);
-
-      const itemToPush: CartTaxItem = {
-        ...item,
-        tax: tax,
-        taxItemPrice: price + tax,
-        itemTotal: (price + tax) * item.quantity,
-      };
-
-      result.services.push(itemToPush);
-    }
+    result.products.push(itemToPush);
   });
   result.cartTotal =
     makeProductTotal(result).sumPrice + makeServiceTotal(result).sumPrice;

@@ -13,4 +13,4 @@ type AllCartItems = {
   taxTotal: number;
 };
 
-export {CartTaxItem, AllCartItems};
+export { CartTaxItem, AllCartItems };
