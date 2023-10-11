@@ -7,6 +7,7 @@ import useUserStore from 'store/useUser';
 
 import handleSignUp from '../../api/handleSignup';
 import Wrapper from './wrapper';
+import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
@@ -27,9 +28,9 @@ const SignUpPage = () => {
       });
 
       if (res.success) {
-        console.log(res.message);
         setUserData(res.data);
-        localStorage.setItem('plotline-userdata', JSON.stringify(res.data));
+        localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(res.data));
+        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(res.data.token));
         navigate(ROUTES.HOME, {
           replace: true,
         });

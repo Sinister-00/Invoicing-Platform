@@ -3,13 +3,13 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-const ProtectedRoute = () => {
+const AuthRoute = () => {
   const { token } = useAuth();
 
-  if (!token) {
-    return <Navigate to={ROUTES.LOGIN} />;
+  if (token) {
+    return <Navigate to={ROUTES.HOME} />;
   }
   return <Outlet />;
 };
 
-export default ProtectedRoute;
+export default AuthRoute;

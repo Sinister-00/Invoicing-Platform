@@ -12,6 +12,7 @@ export const emptyUser: ResponseUserData = {
   isVerified: false,
   name: '',
   username: '',
+  token: '',
 };
 
 export type ResponseUserData = {
@@ -21,6 +22,7 @@ export type ResponseUserData = {
   isVerified: boolean;
   name: string;
   username: string;
+  token: string;
 };
 
 type Response = {
@@ -33,7 +35,6 @@ async function handleSignIn(userData: UserData): Promise<Response> {
   try {
     const response = await axios.post(
       'https://tax-api-testing.onrender.com/api/v1/auth/signin',
-      // 'http://localhost:3001/api/v1/auth/signin',
       JSON.stringify(userData),
       {
         headers: {

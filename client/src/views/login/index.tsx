@@ -1,6 +1,6 @@
-import axios from 'axios';
 import Button from 'components/button';
 import Header from 'components/header';
+import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 import { ROUTES } from 'entities/routes';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +8,6 @@ import useUserStore from 'store/useUser';
 
 import handleSignIn from '../../api/handleSignin';
 import Wrapper from './wrapper';
-
-const API_URL = 'https://localhost:4000/auth';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -27,7 +25,9 @@ const LoginPage = () => {
       if (res.success) {
         console.log(res.message);
         setUserData(res.data);
-        localStorage.setItem('plotline-userdata', JSON.stringify(res.data));
+        localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(res.data));
+        // DO NOT STRINGIFY, also dont change now.
+        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(res.data.token));
         navigate(ROUTES.HOME, {
           replace: true,
         });

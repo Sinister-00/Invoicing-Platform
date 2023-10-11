@@ -14,6 +14,7 @@ export const emptyUser: ResponseUserData = {
   isVerified: false,
   name: '',
   username: '',
+  token: '',
 };
 
 export type ResponseUserData = {
@@ -22,6 +23,7 @@ export type ResponseUserData = {
   isAdmin: boolean;
   isVerified: boolean;
   name: string;
+  token: string
   username: string;
 };
 

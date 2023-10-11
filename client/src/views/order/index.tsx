@@ -1,6 +1,5 @@
 import Button from 'components/button';
 import Header from 'components/header';
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Wrapper from './wrapper';

@@ -6,18 +6,35 @@ import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
 
 import Wrapper from './wrapper';
+import { useEffect, useState } from 'react';
+import getCart, { Cart, emptyCart } from '../../api/getCart';
 
 const BillPage = () => {
-  const { cart, total_price, tax_fee, total_item } = useCartStore();
+  const [loading, setLoading] = useState(false);
+  const [cartData, setCartData] = useState<Cart>(emptyCart);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const data = await getCart();
+      console.log(data);
+      setCartData(data)
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   const handleConfirmOrder = async () => {
     const orderData = {
-      products: cart.map((item) => item.name),
-      totalItems: total_item,
-      subtotal: total_price,
-      totalTax: tax_fee,
-      orderTotal: total_price + tax_fee,
+      products: cartData.products.map((item) => item.product.name),
+      totalItems: cartData.products.length,
+      subtotal: cartData.products.length,
+      orderTotal: formatPrice(cartData.taxTotal / 100 + cartData.cartTotal),
+      totalTax: cartData.taxTotal,
     };
+
+    console.log(orderData);
 
     // try {
     //   const response = await axios.post(
@@ -30,6 +47,10 @@ const BillPage = () => {
     // }
   };
 
+  if (loading) {
+    return <>Loading</>;
+  }
+
   return (
     <>
       <Header />
@@ -39,11 +60,11 @@ const BillPage = () => {
           <div className="order-total--subdata">
             <div className="itemname">
               <h3>products:</h3>
-              {cart.map((item, index) => (
+              {cartData.products.map((item, index) => (
                 <li key={index}>
                   <div className="itmss">
-                    <p>{item.name}</p>
-                    {/* <img src={item.image} alt={item.name} /> */}
+                    <p>{item.product.name}</p>
+                    <img src={item.product.image} alt={item.product.name} />
                   </div>
                 </li>
               ))}
@@ -52,22 +73,21 @@ const BillPage = () => {
             <div className="inn">
               <p>Total Items:</p>
 
-              <p className="it">{total_item}</p>
+              <p className="it">{cartData.products.length}</p>
             </div>
             <div className="inn">
               <p>subtotal:</p>
-              <p className="it"> {formatPrice(parseInt(total_price))} </p>
+              <p className="it"> {formatPrice(cartData.cartTotal)}</p>
             </div>
             <div className="inn">
               <p>Total Tax:</p>
-              <p className="it">{formatPrice(parseInt(tax_fee))} </p>
+              <p className="it"> {formatPrice(cartData.taxTotal / 100)} </p>
             </div>
             <hr />
             <div className="inn">
               <p>order total:</p>
               <p className="it">
-                {' '}
-                {formatPrice(parseInt(tax_fee) + parseInt(total_price))}{' '}
+                {formatPrice(cartData.taxTotal / 100 + cartData.cartTotal)}
               </p>
             </div>
             <p>Cash on Delivery</p>

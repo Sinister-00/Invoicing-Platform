@@ -1,7 +1,7 @@
 const formatPrice = (price: number) =>
   Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'INR',
+    currency: 'USD',
     maximumFractionDigits: 2,
   }).format(price / 10);
 

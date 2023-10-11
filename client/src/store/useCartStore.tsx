@@ -1,3 +1,4 @@
+import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 import { create } from 'zustand';
 
 import { CartState } from '../entities/cart';
@@ -37,14 +38,16 @@ const useCartStore = create<CartState>((set) => ({
   },
 }));
 
-const initialCartState = JSON.parse(localStorage.getItem('plotline-cart') || '{}');
+const initialCartState = JSON.parse(
+  localStorage.getItem(LOCAL_STORAGE_KEYS.CART) || '{}',
+);
 
 if (initialCartState) {
   useCartStore.setState((state) => ({ ...state, ...initialCartState }));
 }
 
 useCartStore.subscribe((state) => {
-  localStorage.setItem('plotline-cart', JSON.stringify(state));
+  localStorage.setItem(LOCAL_STORAGE_KEYS.CART, JSON.stringify(state));
 });
 
 export default useCartStore;

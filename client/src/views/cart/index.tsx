@@ -2,28 +2,50 @@ import Button from 'components/button';
 import CartItem from 'components/cart-item';
 import Header from 'components/header';
 import formatPrice from 'helpers/format-price';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
+import useUserStore from 'store/useUser';
 
+import getCart, { Cart, emptyCart } from '../../api/getCart';
+import removeAllFromCart from '../../api/removeAllFromCart';
 import Wrapper from './wrapper';
 
 const CartPage = () => {
-  const { cart, clearCart, total_price, tax_fee } = useCartStore();
-  const isAuthenticated = false;
-  const user = {};
+  const { userData } = useUserStore();
+  const [loading, setLoading] = useState(false);
+  const { clearCart } = useCartStore();
+  const [cartData, setCartData] = useState<Cart>(emptyCart);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const data = await getCart();
+      console.log(data);
+      setCartData(data)
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  const handleClearCart = async () => {
+    await removeAllFromCart();
+    clearCart();
+  };
+
+  if (loading) {
+    return <>Loading</>;
+  }
 
   return (
     <>
       <Header />
       <Wrapper>
         <div className="container">
-          {isAuthenticated && (
-            <div className="cart-user--profile">
-              <img src={user.profile} alt={user.name} />
-              <h2 className="cart-user--name">{user.name}</h2>
-            </div>
-          )}
+          <div className="cart-user--profile">
+            <h2 className="cart-user--name">{`${userData.name}'s Cart`}</h2>
+          </div>
           <div className="cart_heading grid grid-six-column">
             <p>Item</p>
             <p className="cart-hide">Price</p>
@@ -34,9 +56,20 @@ const CartPage = () => {
           </div>
           <hr />
           <div className="cart-item">
-            {cart.map((curElem) => {
+            {cartData.products.map((curElem) => {
               console.log(curElem);
-              return <CartItem key={curElem.id} {...curElem} />;
+              return (
+                <CartItem
+                  id={curElem.id.toString()}
+                  color={curElem.product.colors[1]}
+                  amount={curElem.quantity}
+                  product={curElem.product}
+                  key={curElem.id}
+                  name={curElem.product.name}
+                  price={curElem.product.price}
+                  image={curElem.product.image}
+                />
+              );
             })}
           </div>
           <hr />
@@ -44,26 +77,25 @@ const CartPage = () => {
             <NavLink to="/bill">
               <Button>Buy Now </Button>
             </NavLink>
-            <Button className="btn btn-clear" onClick={clearCart}>
+            <Button className="btn btn-clear" onClick={handleClearCart}>
               clear cart
             </Button>
           </div>
 
-          {/* order total_amount */}
           <div className="order-total--amount">
             <div className="order-total--subdata">
               <div>
                 <p>subtotal:</p>
-                <p> {formatPrice(parseInt(total_price))} </p>
+                <p> {formatPrice(cartData.cartTotal)} </p>
               </div>
               <div>
                 <p>Total Tax:</p>
-                <p> {formatPrice(parseInt(tax_fee))} </p>
+                <p> {formatPrice(cartData.taxTotal / 100)} </p>
               </div>
               <hr />
               <div>
                 <p>order total:</p>
-                <p> {formatPrice(parseInt(tax_fee) + parseInt(total_price))} </p>
+                <p> {formatPrice(cartData.taxTotal / 100 + cartData.cartTotal)} </p>
               </div>
             </div>
           </div>

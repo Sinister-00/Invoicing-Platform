@@ -1,3 +1,4 @@
+import AuthRoute from 'components/auth-route';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { useAuth } from '../../contexts/AuthContext';
@@ -68,18 +69,24 @@ const Routes = () => {
 
   const routesForNotAuthenticatedOnly = [
     {
-      path: ROUTES.LOGIN,
-      element: <LoginPage />,
-    },
-    {
-      path: ROUTES.SIGNUP,
-      element: <SignUpPage />,
+      path: '/',
+      element: <AuthRoute />,
+      children: [
+        {
+          path: ROUTES.LOGIN,
+          element: <LoginPage />,
+        },
+        {
+          path: ROUTES.SIGNUP,
+          element: <SignUpPage />,
+        },
+      ],
     },
   ];
 
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(!token ? routesForNotAuthenticatedOnly : []),
+    ...routesForNotAuthenticatedOnly,
     ...routesForAuthenticatedOnly,
   ]);
 

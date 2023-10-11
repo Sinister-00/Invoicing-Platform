@@ -46,16 +46,15 @@ const Wrapper = styled.section`
     text-transform: capitalize;
   }
   .cart-image--name {
-    /* background-color: red; */
     align-items: center;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 0.4fr 1fr;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
     text-transform: capitalize;
     text-align: left;
     img {
-      max-width: 5rem;
-      height: 5rem;
+      width: 150px;
+      height: 150px;
       object-fit: contain;
       color: transparent;
     }
@@ -89,7 +88,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2.4rem;
+    gap: 0.5rem;
     font-size: 1.4rem;
 
     button {

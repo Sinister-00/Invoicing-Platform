@@ -1,4 +1,5 @@
 import Button from 'components/button';
+import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 import { ROUTES } from 'entities/routes';
 import { useState } from 'react';
 import { CgClose, CgMenu } from 'react-icons/cg';
@@ -15,7 +16,6 @@ const Nav = () => {
   const [menuIcon, setMenuIcon] = useState(false);
   const { total_item } = useCartStore();
 
-
   const isLoggedIn = !!userData.name;
 
   const login = () => {
@@ -26,7 +26,7 @@ const Nav = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem('plotline-userdata');
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.USER);
     resetUser();
     navigate(ROUTES.HOME, {
       replace: true,

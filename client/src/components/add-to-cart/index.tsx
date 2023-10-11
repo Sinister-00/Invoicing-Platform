@@ -6,6 +6,7 @@ import { FaCheck } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import useCartStore from 'store/useCartStore';
 
+import addToCart from '../../api/addToCart';
 import Wrapper from './wrapper';
 
 type TAddToCart = {
@@ -13,10 +14,11 @@ type TAddToCart = {
 };
 
 const AddToCart: React.FC<TAddToCart> = ({ product }) => {
-  const { addToCart } = useCartStore();
+  const { addToCart: addToCartStore } = useCartStore();
   const { id, name, colors, stock } = product;
   const [color, setColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  console.log(color);
 
   const setDecrease = () => {
     amount > 1 ? setAmount(amount - 1) : setAmount(1);
@@ -24,6 +26,11 @@ const AddToCart: React.FC<TAddToCart> = ({ product }) => {
 
   const setIncrease = () => {
     amount < stock ? setAmount(amount + 1) : setAmount(stock);
+  };
+
+  const handleClick = async () => {
+    await addToCart(id, amount);
+    addToCartStore(id, name, color, amount, product);
   };
 
   return (
@@ -52,7 +59,7 @@ const AddToCart: React.FC<TAddToCart> = ({ product }) => {
         setIncrease={setIncrease}
       />
 
-      <NavLink to="/cart" onClick={() => addToCart(id, name, color, amount, product)}>
+      <NavLink to="/cart" onClick={handleClick}>
         <Button className="btn">Add To Cart</Button>
       </NavLink>
     </Wrapper>

@@ -2,6 +2,7 @@ import './App.css';
 
 import GlobalStyle from 'components/global-styles';
 import Routes from 'components/route-handler';
+import { LOCAL_STORAGE_KEYS } from 'entities/local-storage';
 import theme from 'entities/theme';
 import { useEffect } from 'react';
 import useFilterStore from 'store/useFilter';
@@ -25,12 +26,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem('plotline-userdata')) {
+    if (localStorage.getItem(LOCAL_STORAGE_KEYS.USER)) {
       try {
-        const storedData = JSON.parse(localStorage.getItem('plotline-userdata') || '');
+        const storedData = JSON.parse(
+          localStorage.getItem(LOCAL_STORAGE_KEYS.USER) || '',
+        );
         setUserData(storedData);
       } catch (error) {
         console.error('Error parsing "plotline-userdata" from local storage:', error);
+      }
+    } else {
+      try {
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.TOKEN);
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.CART);
+      } catch (error) {
+        console.error('Error resetting userdata from local storage:', error);
       }
     }
   }, []);
